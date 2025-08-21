@@ -44,9 +44,25 @@
 #      print("*",end="")
 #     print("\r")
     
-#Table of 9
-for i in range(1,21):
-   for j in range(1,11):
-    print(f"{i} * {j} =",i*j)
+# #Table from 1 to 120
+# for i in range(1,21):
+#    for j in range(1,11):
+#     print(f"{i} * {j} =",i*j)#formatted string literial
 
 #Triangle
+for i in range (1,6):
+  print("*",end="")
+  print("*")
+
+
+#Dictionary
+# d = {
+#   "Faculty" :"bca",
+#   "sem" : 4,
+#   "Location":"gaidakot",
+#   "Duration":" 4 years"
+# }
+# print(d)
+# print(type (d))
+
+
