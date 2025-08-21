@@ -29,10 +29,22 @@
 #     case _:
 #         print("Invalid day number")
 
-#Tuple
-t = (1,'c',"lumbini",9+7)
-print(t)
-print(type(t))
-l = list(t)
-print(1)
-print(type(t))
+# #Tuple
+# t = (1,'c',"lumbini",9+7)
+# print(t)
+# print(type(t))
+# l = list(t)
+# print(1)
+# print(type(t))
+
+
+# #pyramid
+# for i in range(1,6):
+#     for j in range(1,i+1):
+#      print("*",end="")
+#     print("\r")
+    
+#Table of 9
+for i in range(1,10):
+   print(f"{7} * {i} =",7*i)
+
