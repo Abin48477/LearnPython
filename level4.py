@@ -35,13 +35,20 @@
 # else:
 #     print("odd")
 
-username="abin"
-password ="krishna123"
+# username="abin"
+# password ="krishna123"
 
-uname = input("Enter The Username: ")
-password1 =input("Enter The Password: ")
+# uname = input("Enter The Username: ")
+# password1 =input("Enter The Password: ")
 
-if username == uname and password == password1:
-    print("Login Successful! Welcome,", uname)
-else:
-   print("Invalid username or password.") 
+# if username == uname and password == password1:
+#     print("Login Successful! Welcome,", uname)
+# else:
+#    print("Invalid username or password.") 
+
+#loops
+i = 1
+while i <= 5:
+    print("hare Krishna")
+    i=i+1
+   
