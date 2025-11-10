@@ -96,3 +96,7 @@ print("Mean of Age:",age_mean)
 
 
 #Filter dataframe for rows where age>25 then save the record as filerdata.csv
+
+filter = df[df['Age']>25]
+print("Age>25:\n",filter)
+filter.to_csv ('filterdata.csv',index=False)
