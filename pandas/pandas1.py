@@ -46,28 +46,53 @@ import pandas as pd
 # ser=pd.Series([1,2,3],index=['a','b','c'],name = "Example Series")
 
 
+# data ={
+#     "Name":["susasan","abin","rajan","manita","amrita"],
+#     "Age":[25,32,32,12,4],
+#     "City":["Bus-park",None,'Ksheraprur',"parsa",'parbatipur']
+# }
+# df = pd.DataFrame(data)
+# print("Is Null: \n",df.isnull())
+# df_dropped_rows = df.dropna()
+# print("DataFRame with dropped rows:\n",df_dropped_rows)
+
+# df_dropped_columns = df.dropna(axis = 1)
+# print("DataFrame with dropped columns:\n",df_dropped_columns)
+
+# #filling
+# df_filled_ffill = df.fillna(method ="ffill")
+# print("DataRaame with forward filll\n",dr_filled_ffill)
+
+# df_filled_ffill = df.fillna(method="ffill")
+# print("DataFrame with backward fill:\n",df_filled_bfill)
+
+# #Selecting rows where city is "Parsa"
+
+# city = df[df["City"]=="Parsa"]
+
+# print("\n Rows where city is Para\n",city)
+
+# df = pd.DataFrame(data)
+#save the dataframe to csv file
 data ={
     "Name":["susasan","abin","rajan","manita","amrita"],
     "Age":[25,32,32,12,4],
-    "City":["Bus-park",None,'Ksheraprur',"parsa",'parbatipur']
+    "City":["Bus-park",'gaidakot','Ksheraprur',"parsa",'parbatipur']
 }
 df = pd.DataFrame(data)
-print("Is Null: \n",df.isnull())
-df_dropped_rows = df.dropna()
-print("DataFRame with dropped rows:\n",df_dropped_rows)
+df.to_csv('example.csv',index=False)
+print("\n Dataframe saved successfully!")
 
-df_dropped_columns = df.dropna(axis = 1)
-print("DataFrame with dropped columns:\n",df_dropped_columns)
+#now after adding rows and columns named 'Salaries'
+#Read the csv file
+df= pd.read_csv('example.csv')
+#show basic information
+print("DataFrame Info:")
+print(df.info())
 
-#filling
-df_filled_ffill = df.fillna(method ="ffill")
-print("DataRaame with forward filll\n",dr_filled_ffill)
+#show the mean of the age
+age_mean =df["Age"].mean()
+print("Mean of Age:",age_mean)
 
-df_filled_ffill = df.fillna(method="ffill")
-print("DataFrame with backward fill:\n",df_filled_bfill)
 
-#Selecting rows where city is "Parsa"
-
-city = df[df["City"]=="Parsa"]
-
-print("\n Rows where city is Para\n",city)
+#Filter dataframe for rows where age>25 then save the record as filerdata.csv
