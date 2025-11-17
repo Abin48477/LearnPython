@@ -1,102 +1,91 @@
 import pandas as pd
-# #Create a Series
-# s= pd.Series([1,2,3,4,5])
-# print("Series :",s)
 
-# data1 ={
-#     'Name':['Subesh','Smith','Rajan','Ritesh','amir'],
-#     'Age' :[12,23,30,45 ,20],
-#     'City':['denkmark','kathmandu','pokhara','htd','sydne']
-# }
-# df = pd.DataFrame(data1)
-# print('DataFrame\n',df)
+# Create a Series
+s = pd.Series([1, 2, 3, 4, 5])
+print("Series:\n", s)
 
-# # selecting row by index
-
-# first_row = df.iloc[0]
-# print('\n First row:\n',first_row)
-
-# #adding new salary column
-# df['salary'] =[70000,5000,30000,60000,500]
-# print('dataFrame with salary column :\n',df)
-
-
-# #Filtering Data:Show the data  Whose age > 25
-# filter_data = df[df["Age"] > 25]
-# print("\n Filtered Data:",filter_data)
-
-# #using head to view first 3rows
-
-# print('\n First 3 rows of df \n ',df.head(3))
-
-# #using  tail
-# print("\n last 3 rows of df :",df.tail(3))
-
-# #accessing DataFrame attributes
-# print('\n DataFrame Index:\n ',df.index)
-# print('\n DataFrame Columns:\n ',df.columns)
-# print('\n DataFrame Data Types:\n ',df.dtypes)
-# print('\n DataFrame Shape:\n ',df.shape)
-# print('\n DataFrame Size:\n ',df.size)
-# print('\n DataFrame Values:\n ',df.values)
-# print('\n DataFrame Transpose:\n ',df.T)
-# print('\n DataFrame Info:\n ',df.info())
-
-# #for Series
-# ser=pd.Series([1,2,3],index=['a','b','c'],name = "Example Series")
-
-
-# data ={
-#     "Name":["susasan","abin","rajan","manita","amrita"],
-#     "Age":[25,32,32,12,4],
-#     "City":["Bus-park",None,'Ksheraprur',"parsa",'parbatipur']
-# }
-# df = pd.DataFrame(data)
-# print("Is Null: \n",df.isnull())
-# df_dropped_rows = df.dropna()
-# print("DataFRame with dropped rows:\n",df_dropped_rows)
-
-# df_dropped_columns = df.dropna(axis = 1)
-# print("DataFrame with dropped columns:\n",df_dropped_columns)
-
-# #filling
-# df_filled_ffill = df.fillna(method ="ffill")
-# print("DataRaame with forward filll\n",dr_filled_ffill)
-
-# df_filled_ffill = df.fillna(method="ffill")
-# print("DataFrame with backward fill:\n",df_filled_bfill)
-
-# #Selecting rows where city is "Parsa"
-
-# city = df[df["City"]=="Parsa"]
-
-# print("\n Rows where city is Para\n",city)
-
-# df = pd.DataFrame(data)
-#save the dataframe to csv file
-data ={
-    "Name":["susasan","abin","rajan","manita","amrita"],
-    "Age":[25,32,32,12,4],
-    "City":["Bus-park",'gaidakot','Ksheraprur',"parsa",'parbatipur']
+# Create a DataFrame
+data1 = {
+    'Name': ['Subesh', 'Smith', 'Rajan', 'Ritesh', 'amir'],
+    'Age': [12, 23, 30, 45, 20],
+    'City': ['denkmark', 'kathmandu', 'pokhara', 'htd', 'sydne']
 }
-df = pd.DataFrame(data)
-df.to_csv('example.csv',index=False)
-print("\n Dataframe saved successfully!")
+df = pd.DataFrame(data1)
+print('\nDataFrame:\n', df)
 
-#now after adding rows and columns named 'Salaries'
-#Read the csv file
-df= pd.read_csv('example.csv')
-#show basic information
-print("DataFrame Info:")
+# Selecting row by index
+first_row = df.iloc[0]
+print('\nFirst row:\n', first_row)
+
+# Adding a new column
+df['salary'] = [70000, 5000, 30000, 60000, 500]
+print('\nDataFrame with salary column:\n', df)
+
+# Filter data: Show where age > 25
+filter_data = df[df['Age'] > 25]
+print('\nFiltered Data:\n', filter_data)
+
+# View first 3 rows
+print('\nFirst 3 rows:\n', df.head(3))
+
+# Last 3 rows
+print('\nLast 3 rows:\n', df.tail(3))
+
+# DataFrame attributes
+print('\nDataFrame Index:\n', df.index)
+print('\nDataFrame Columns:\n', df.columns)
+print('\nDataFrame Data Types:\n', df.dtypes)
+print('\nDataFrame Shape:\n', df.shape)
+print('\nDataFrame Size:\n', df.size)
+print('\nDataFrame Values:\n', df.values)
+print('\nDataFrame Transpose:\n', df.T)
+print('\nDataFrame Info:')
 print(df.info())
 
-#show the mean of the age
-age_mean =df["Age"].mean()
-print("Mean of Age:",age_mean)
+# Series with custom index and name
+ser = pd.Series([1, 2, 3], index=['a', 'b', 'c'], name="Example Series")
 
+# Handling missing data
+data = {
+    "Name": ["susasan", "abin", "rajan", "manita", "amrita"],
+    "Age": [25, 32, 32, 12, 4],
+    "City": ["Bus-park", None, 'Ksheraprur', "parsa", 'parbatipur']
+}
+df = pd.DataFrame(data)
+print("\nIs Null:\n", df.isnull())
+df_dropped_rows = df.dropna()
+print("\nDataFrame with dropped rows:\n", df_dropped_rows)
+df_dropped_columns = df.dropna(axis=1)
+print("\nDataFrame with dropped columns:\n", df_dropped_columns)
+df_filled_ffill = df.fillna(method="ffill")
+print("\nDataFrame with forward fill:\n", df_filled_ffill)
+df_filled_bfill = df.fillna(method="bfill")
+print("\nDataFrame with backward fill:\n", df_filled_bfill)
 
-#Filter dataframe for rows where age>25 then save the record as filerdata.csv
+# Selecting rows where city is "parsa"
+city = df[df["City"] == "parsa"]
+print("\nRows where city is 'parsa':\n", city)
 
-filter = df[df['Age']>25]
-print("Age>25:\n",filter)
-filter.to_csv ('filterdata.csv',index=False)
+# Save DataFrame to CSV and re-load for more operations
+data = {
+    "Name": ["susasan", "abin", "rajan", "manita", "amrita"],
+    "Age": [25, 32, 32, 12, 4],
+    "City": ["Bus-park", 'gaidakot', 'Ksheraprur', "parsa", 'parbatipur']
+}
+df = pd.DataFrame(data)
+df.to_csv('example.csv', index=False)
+print("\nDataFrame saved successfully!")
+
+# Read the CSV file
+df = pd.read_csv('example.csv')
+# Show basic info
+print("\nDataFrame Info:")
+print(df.info())
+# Show mean of Age
+age_mean = df["Age"].mean()
+print("Mean of Age:", age_mean)
+
+# Filter DataFrame for Age > 25 and save as CSV
+filter = df[df['Age'] > 25]
+print("\nAge > 25:\n", filter)
+filter.to_csv('filterdata.csv', index=False)
