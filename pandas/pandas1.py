@@ -89,3 +89,48 @@ print("Mean of Age:", age_mean)
 filter = df[df['Age'] > 25]
 print("\nAge > 25:\n", filter)
 filter.to_csv('filterdata.csv', index=False)
+
+
+# Read the filtered data
+filtered_df = pd.read_csv('filterdata.csv')
+print("\nFiltered DataFrame Info:")
+print(filtered_df.info())
+print("\nFiltered DataFrame:\n", filtered_df)# Show mean of Age in filtered data
+filtered_age_mean = filtered_df["Age"].mean()
+print("Mean of Age in filtered data:", filtered_age_mean)
+# Describe the filtered data
+print("\nFiltered DataFrame Description:\n", filtered_df.describe())
+# Describe the original data
+print("\nOriginal DataFrame Description:\n", df.describe())
+# Sort the original DataFrame by Age
+sorted_df = df.sort_values(by='Age')    
+print("\nSorted DataFrame by Age:\n", sorted_df)
+print("\nSorted DataFrame Info:")
+print(sorted_df.info())
+# Reset index of sorted DataFrame
+reset_sorted_df = sorted_df.reset_index(drop=True)
+print("\nReset Sorted DataFrame:\n", reset_sorted_df)
+print("\nReset Sorted DataFrame Info:")
+print(reset_sorted_df.info())
+print("\nReset Sorted DataFrame Columns:\n", reset_sorted_df.columns)
+# Save the reset sorted DataFrame
+reset_sorted_df.to_csv('sorteddata.csv', index=False)
+print("\nSorted DataFrame saved successfully!")
+# Read the sorted data
+sorted_data_df = pd.read_csv('sorteddata.csv')
+print("\nSorted DataFrame Info:")
+print(sorted_data_df.info())
+print("\nSorted DataFrame:\n", sorted_data_df)
+
+# Show mean of Age in sorted data
+sorted_age_mean = sorted_data_df["Age"].mean()
+print("Mean of Age in sorted data:", sorted_age_mean)   
+# Describe the sorted data
+print("\nSorted DataFrame Description:\n", sorted_data_df.describe())
+# Describe the original data again
+print("\nOriginal DataFrame Description:\n", df.describe())
+# Sort the original DataFrame by Name
+sorted_by_name_df = df.sort_values(by='Name')
+print("\nSorted DataFrame by Name:\n", sorted_by_name_df)
+print("\nSorted DataFrame by Name Info:")
+print(sorted_by_name_df.info())
