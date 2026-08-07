@@ -37,3 +37,4 @@ print('List:', my_list_var) # List: [22, 'Hello world', 3.14, True]
 # None: A special value that represents the absence of a value.
 my_none_var = None
 print('None:', my_none_var) # None: None
+
