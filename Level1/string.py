@@ -42,3 +42,41 @@ print(my_str33[6])
 print(my_str33[-1])
 print(my_str33[-2])
 
+
+# Concatenating Strings
+# In Python, you can combine multiple strings together with the plus (+) operator
+my_str_1 = "hello"
+my_str_2 = "World"
+
+str_plus_str = my_str_1 +' '+ my_str_2
+print(str_plus_str)
+
+# Repeating Strings
+# You can also repeat a string by multiplying it with an integer using the * operator. The string is repeated the specified number of times:
+sound = 'ha'
+repeated_sound = sound *3
+print(repeated_sound)
+
+
+# augmented assignment operator for concatenation +=
+
+name = 'krishna '
+age = 16
+
+name_and_age = name
+name_and_age += str(age)#here age is interger so change into string otherwise it comes typeError
+
+print(name_and_age)
+
+# String Interpolation
+# the process of inserting variables and exprssions into a string is called string interpolation
+name = "ram "
+age = 17
+name_and_age1 = f'My name is {name} and I am {age} years old'
+print(name_and_age1)
+
+num1 = 5
+num2 = 10
+print(f'the sum of {num1} and {num2} is {num1 + num2}')
+
+
