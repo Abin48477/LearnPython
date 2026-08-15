@@ -37,3 +37,19 @@ exp_floats = my_float_1 ** my_float_2
 
 print('Integer Exponentiation:', exp_ints) # Integer Exponentiation: 951166013805414055936
 print('Float Exponentiation:',  exp_floats) # Float Exponentiation: 614787626.1765089
+
+
+# round()
+print(round(4.798))#5
+
+
+print(round(4.253,1))#4.3
+# here 1 meands keep 1 digit after decimal
+
+#abs()
+# gives the positive value 
+print(abs(-2433342))
+
+print(pow(2,3))#gives 8
+print(2**3)#gives 8
+print(2,3,8) #means (2³) % 5
