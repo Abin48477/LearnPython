@@ -2,4 +2,12 @@ print("Fibonacci Series")
 def fibonacci_series(n):
     a,b =0,1
     series = []
-for num``
+
+    for _ in range(n):
+        series.append(a)
+        a, b = b, a + b
+
+    return series
+
+
+print(fibonacci_series(10))
