@@ -1,0 +1,18 @@
+Company: ABC Electronics
+
+Products:
+ABC Electronics sells laptops, phones, headphones, and keyboards.
+
+Return Policy:
+Customers can return products within 30 days of purchase.
+
+Shipping:
+Orders are normally delivered within 3 to 5 business days.
+
+Customer Support:
+Customer support is available Monday to Friday, 9 AM to 5 PM.
+
+Warranty:
+Laptops have a 1-year warranty.
+Phones have a 1-year warranty.
+Headphones have a 6-month warranty.
