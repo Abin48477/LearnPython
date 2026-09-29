@@ -25,4 +25,31 @@ Customers can return products within 30 days of purchase.
 Shipping:
 Orders are normally delivered within 3 to 5 business days.
 
-5th-->
+5th-->currently i am doing the embedding for every chunk as the flow of the program
+Company document
+       ↓
+Split into chunks
+       ↓
+Create embedding for every chunk
+       ↓
+Customer asks question
+       ↓
+Create embedding for question
+       ↓
+Compare question with ALL chunks
+       ↓
+Find the most relevant chunk
+
+NOTE:
+1.0  → very similar meaning
+0.0  → not similar
+-1.0 → opposite direction
+Customer question
+       ↓
+   Embedding
+       ↓
+Compare with document embeddings
+       ↓
+Find the closest meaning
+       ↓
+Relevant information
