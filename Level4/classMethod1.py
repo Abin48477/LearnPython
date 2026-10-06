@@ -36,7 +36,29 @@ class Student:
 s1 = Student("pradip", 25)
 s1.celebrate_birthday()
 s1.celebrate_birthday()
-#
-        
+#__str__() method:
+# it controls what is returned when the object is printed.
 
-    
+class Person2:
+    def __init__(self, name, age):
+        self.name = name 
+        self.age = age
+
+    def __str__(self):
+        return f"{self.name} ({self.age})"
+
+p1= Person2("abin", 54)
+print(p1.name)
+print(p1)
+
+# without__str__method
+class Person3:
+    def __init__(self, name, age):
+        self.name = name 
+        self.age = age
+
+    # def __str__(self):
+    #     return f"{self.name} ({self.age})"
+
+p3= Person3("abinram", 540)
+print(p3)#<__main__.Person3 object at 0x000002AF8C8469D0>
