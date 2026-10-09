@@ -116,3 +116,67 @@ c1 = Company1(["abin","ram","sita","python"])
 print(len(c1))
 
 # Note: Without __len__(), calling len(c1) would raise a TypeError, since Python would not know what "length" means for a Company.
+
+# __lt__()method
+# The __lt__() method ("less than") controls what the < operator does for your own objects.
+
+class Family:
+    def __init__(self,name,age):
+      self.name = name
+      self.age = age
+# Remove __lt__(), and the comparison fails:
+
+    def __lt__(self,other):
+      return self.age < other.age
+
+f1 = Family("kishor",23)
+f2 = Family("ishor",20)
+print(f1 < f2)
+# TypeError:
+
+# Sorting with __lt__()
+class Subject:
+    def __init__(self, name, age):
+       self.name = name
+       self.age = age
+# without __lt__method  x = sorted([s1,s2,s3])
+        # ^^^^^^^^^^^^^^^^^^
+# TypeError: '<' not supported between instances of 'Subject' and 'Subject'
+    def __lt__(self,other):
+       return self.age < other.age
+    
+s1 = Subject("o",64)
+s2 = Subject("hlo",14)
+s3 = Subject("hello",4)
+
+x = sorted([s1,s2,s3])
+for xi in x:
+    print(xi.name, xi.age)
+
+# the __contains__() method
+
+# the __contains__() method controls what the in operator checks for your own objects. 
+#  check if  an employee is in a  abcCpmpany
+class AbcCompany:
+    def __init__(self,employees):
+       self.employees = employees
+
+    def __contains__(self, name):
+        return name in self.employees
+
+c1 = AbcCompany(["ram","hare","hari","krishna"])
+print("krishna" in c1)#true 
+print("gopal" in c1)#false
+
+# python __call__() mehod
+
+# the __call__() method lets an object be called like a function, using object() syntax.
+
+
+class Dog:
+    def __init__(name, age):
+        self.name = name
+        self.age = age
+
+dog = Dog("Pinky", 3)
+print(dog.name)
