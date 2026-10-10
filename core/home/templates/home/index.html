@@ -4,9 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Django tutorial 2026</title>
+    <style>
+  table, th, td {
+  border: 1px solid black;
+}
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  
 </head>
-<body>
-    <h1> This template is return by Django Server.</h1>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque quod autem iste provident. Sequi dicta illo cum. Rerum repellendus dolor suscipit culpa, quis ullam quibusdam id dolore in distinctio veniam.</p>
+
+<body class="container mt-4">
+    <h1>This template is returned by the Django server.</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>S. No</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Can Vote</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for people in peoples %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ people.name }}</td>
+                <td>{{ people.age }}</td>
+                <td {% if people.age >= 18 %} style="background:green" {% endif %}>
+                    {% if people.age >= 18 %}
+                        👍
+                    {% else %}
+                        👎
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>
+        {% if "carrot" in vegetables %}
+            Carrot available
+        {% endif %}
+        {% if "tomato" in vegetables %}
+            Tomato available
+        {% endif %}
+        {% if "carrot" not in vegetables and "tomato" not in vegetables %}
+            Not available
+        {% endif %}
+    </p>
 </body>
 </html>
