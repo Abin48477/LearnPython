@@ -9,6 +9,3 @@ class Student(models.Model):
     address = models.TextField()
     image = models.ImageField()
     file = models.FileField()
-
-class Product(models.Model):
-    pass
