@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 {% block start %}
 <h1>This is recipes.html</h1>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'about' %}">About</a>
+    <a href="{% url 'contact'}">Contact</a>
+
 <div class="container mt-5">
+    {% if messages %}
     {% for message in messages %}
-        <div class="alert alert-success" role="alert">{{ message }}</div>
+    <div class="alert alert-success" id = "success-message">{{ message }}</div>
     {% endfor %}
+    {% endif %}
+
 
     <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -25,4 +32,39 @@
     </form>
 
 </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">S.N.</th>
+      <th scope="col">Recipe Name:</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope ="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for recipe in recipes %}
+    <tr>
+      <th scope="row">1</th>
+      <td> {{ recipe.recipe_name }}</td>
+      <td>{{ recipe.recipe_description }}</td>
+      <td>
+        <img src="/media/{{recipe.recipe_image}}" alt="images" style = "width : 100%">
+      </td>
+      <td>
+        <a href="{% url 'delete_recipe' recipe.id %}" class = "btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<script>
+  setTimeout(function() {
+    const message = document.getElementById("success-message");
+    if(message) {
+        message.style.display ="none";
+    }
+  }, 3000);
+</script>
 {% endblock %}
