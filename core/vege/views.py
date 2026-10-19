@@ -14,9 +14,10 @@ def recipes(request):
 
         # Get the words from the form and the picture they picked.
         data = request.POST
-        recipe_image = request.FILES.get("recipe_image")
         recipe_name = data.get('recipe_name')
         recipe_description = data.get('recipe_description')
+        recipe_image = request.FILES.get("recipe_image")
+
         # # Show the recipe details in the server's notebook (the console).
         # print(recipe_name)
         # print(recipe_description)
@@ -44,8 +45,35 @@ def recipes(request):
 # request → receives the information Django passes to the function.
 def delete_recipe(request, id ):
     recipe = Recipe.objects.get(id = id)
+    #delete the image file from media/recipe/
+    if recipe.recipe_image:
+        recipe.recipe_image.delete(save = False)
+
+    # Delete the recipe from the database
     recipe.delete()
-# Here, request lets Django connect the success message to the current request so it can display it after the redirect.
+
+    # Here, request lets Django connect the success message to the current request so it can display it after the redirect.
     messages.success(request, "Recipe deleted successfully!")
 
     return redirect("/recipes/")
+
+# edit function
+def edit_recipe(request, id):
+    recipe = Recipe.objects.get(id=id)
+
+    if request.method == "POST":
+        data = request.POST
+        recipe.recipe_name = data.get("recipe_name")
+        recipe.recipe_description = data.get("recipe_description")
+
+        if request.FILES.get("recipe_image"):
+            recipe.recipe_image = request.FILES.get("recipe_image")
+
+        recipe.save()
+
+        messages.success(request, "Recipe updated Successfully!")
+        return redirect("/recipes/")
+
+    return render(request,"edit_recipe.html ",{"recipe":recipe})
+# Here, Django sends the recipe object to the HTML page so it can display the existing details.
+        
