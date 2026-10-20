@@ -62,18 +62,25 @@ def edit_recipe(request, id):
     recipe = Recipe.objects.get(id=id)
 
     if request.method == "POST":
+        print("FILES:",request.FILES)
+        print("NEW IMAGE:", request.FILES.get("recipe_image"))
+        
         data = request.POST
         recipe.recipe_name = data.get("recipe_name")
         recipe.recipe_description = data.get("recipe_description")
 
-        if request.FILES.get("recipe_image"):
-            recipe.recipe_image = request.FILES.get("recipe_image")
+            # get the newly uploaded image
+        new_image = request.FILES.get("recipe_image")
+
+        if new_image:
+            recipe.recipe_image = new_image
 
         recipe.save()
 
         messages.success(request, "Recipe updated Successfully!")
         return redirect("/recipes/")
+    # go to recipes.html page
 
     return render(request,"edit_recipe.html ",{"recipe":recipe})
-# Here, Django sends the recipe object to the HTML page so it can display the existing details.
+# Here, Django sends the recipe object to the edit_recipe.html so it can display the existing details.
         
