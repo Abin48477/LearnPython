@@ -29,18 +29,37 @@ def recipes(request):
             recipe_description = recipe_description,
             recipe_image = recipe_image,
             )
+        
         messages.success(request, "Recipe is added Successfully!!")
         # Send the person back to the recipes page after saving.
         return redirect("/recipes/")
 
+    # Get search text from the URL meaning get that data sent through the URL
+    search_query = request.GET.get("search", "")
+    # .get("search", "") = find the item named search; if it's missing, give me an empty string.
 
-    # Get all the recipes already in the recipe box.
+    # Get all recipes from the database
     queryset = Recipe.objects.all()
-    # Give the recipes to the page so it can show them.
-    context = {'recipes': queryset}
 
-    # Show the recipes page with the list of recipes.
-    return render(request, "recipes.html", context)
+    # Filter recipes if the user searches
+    if search_query:
+        queryset = queryset.filter(recipe_name__icontains=search_query)
+# recipe_name__icontains
+# Means: "Look inside the recipe name and find text that contains the word I'm searching for. Ignore uppercase and lowercase differences."
+   
+    # send the results to the recipes.HTML file
+    return render(request, "recipes.html",{
+        "recipes": queryset,
+        "search_query": search_query
+    })
+
+    # # Get all the recipes already in the recipe box.
+    # queryset = Recipe.objects.all()
+    # # Give the recipes to the page so it can show them.
+    # context = {'recipes': queryset}
+# context = {'recipes': queryset} and "recipes": queryset do the same job here. The dictionary can be created in a separate variable or written directly inside render().
+    # # Show the recipes page with the list of recipes.
+    # return render(request, "recipes.html", context)
 
 # request → receives the information Django passes to the function.
 def delete_recipe(request, id ):
