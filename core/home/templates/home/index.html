@@ -35,16 +35,5 @@
             {% endfor %}
         </tbody>
     </table>
-    <p>
-        {% if "carrot" in vegetables %}
-            Carrot available
-        {% endif %}
-        {% if "tomato" in vegetables %}
-            Tomato available
-        {% endif %}
-        {% if "carrot" not in vegetables and "tomato" not in vegetables %}
-            Not available
-        {% endif %}
-    </p>
 </main>
 {% endblock %}
