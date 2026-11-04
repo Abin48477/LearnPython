@@ -30,6 +30,7 @@ urlpatterns = [
     path('edit-recipe/<int:id>/', edit_recipe, name = "edit_recipe"),
     path('register/',register, name = "register"),
     path('login/', user_login, name = "login"),
+    path('logout/',user_logout, name='logout'),
     path('admin/', admin.site.urls),
     path('success-page/' , success_page , name = "success_page"),
     
