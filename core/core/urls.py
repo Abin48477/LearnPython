@@ -28,13 +28,17 @@ urlpatterns = [
     path('about/' , about , name ="about"),
     path('delete-recipe/<int:id>/', delete_recipe, name = "delete_recipe"),
     path('edit-recipe/<int:id>/', edit_recipe, name = "edit_recipe"),
-    
+    path('register/',register, name = "register"),
+    path('login/', user_login, name = "login"),
     path('admin/', admin.site.urls),
     path('success-page/' , success_page , name = "success_page"),
     
     
 ]
-
+# Part	        Meaning
+# 'login/'	    URL the user visits
+# user_login	Function Django executes
+# name='login'	Name used to reference this URL
 if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL,
