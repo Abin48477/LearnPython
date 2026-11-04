@@ -14,5 +14,18 @@
     </button>
 
 </form>
+<hr>
+
+<h4>Registered Users (Testing Only)</h4>
+
+{% for registered_user in registered_users %}
+
+    <p>{{ registered_user.username }}</p>
+
+{% empty %}
+
+    <p>No users registered yet.</p>
+
+{% endfor %}
 
 {% endblock %}
