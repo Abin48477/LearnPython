@@ -3,8 +3,11 @@ from .models import Recipe
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
 # UserCreationForm — Django's built-in form for creating a user account. It handles password validation and secure password hashing through Django's authentication system.
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+# Meaning: Only logged-in users can access a protected page.
 
 def recipes(request):
     # This is the page that helps us show recipes and save new ones.
@@ -12,6 +15,8 @@ def recipes(request):
 
     # If someone sent the form, we need to save the recipe they typed in.
     if request.method == "POST":
+        if not request.user.is_authenticated:
+            return redirect("login")
         print("FORM SUBMITTED")
 
         # Get the words from the form and the picture they picked.
@@ -64,6 +69,8 @@ def recipes(request):
     # return render(request, "recipes.html", context)
 
 # request → receives the information Django passes to the function.
+
+@login_required(login_url='login')
 def delete_recipe(request, id ):
     recipe = Recipe.objects.get(id = id)
     #delete the image file from media/recipe/
@@ -79,6 +86,7 @@ def delete_recipe(request, id ):
     return redirect("/recipes/")
 
 # edit function
+@login_required(login_url='login')
 def edit_recipe(request, id):
     recipe = Recipe.objects.get(id=id)
 
@@ -123,7 +131,8 @@ def register(request):
         form = UserCreationForm()
 
     return render(request, "register.html",{
-       "form":form
+       "form":form,
+       "registered_users": User.objects.all()
    })
 # Understand it simply
 # 1. def register(request): — creates a view that handles requests to the registration page.
@@ -147,7 +156,7 @@ def user_login(request):
             return redirect("/recipes/")
         else:
             print("LOGIN ERREORS:" , form.errors)
-            
+
 
     else:
         # 8. Display an empty form for GET requests
@@ -155,5 +164,12 @@ def user_login(request):
 
 # This displays the login page. If the submitted credentials are invalid, the form is displayed again with errors.
     return render(request, "login.html", {
-        "form": form
+        "form": form,
+        "registered_users": User.objects.all()
     })
+
+def user_logout(request):
+    # Logs out the current user and clears their authentication session.
+    logout(request)
+
+    return redirect("/login/")
