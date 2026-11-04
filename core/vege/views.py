@@ -1,8 +1,10 @@
 from django.shortcuts import redirect, render
 from .models import Recipe
 from django.contrib import messages
-
-# Create your views here.
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login
+# UserCreationForm — Django's built-in form for creating a user account. It handles password validation and secure password hashing through Django's authentication system.
 
 def recipes(request):
     # This is the page that helps us show recipes and save new ones.
@@ -102,4 +104,56 @@ def edit_recipe(request, id):
 
     return render(request,"edit_recipe.html ",{"recipe":recipe})
 # Here, Django sends the recipe object to the edit_recipe.html so it can display the existing details.
+
+
+def register(request):
+    # if post
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        #if valid
+        if form.is_valid():
+            user = form.save()
+            print('USER CREATED:',user.username)
+            return redirect("/login/")
         
+        else:
+            print("REGISTRATION ERRORS:" , form.errors)
+    else:
+        #if get
+        form = UserCreationForm()
+
+    return render(request, "register.html",{
+       "form":form
+   })
+# Understand it simply
+# 1. def register(request): — creates a view that handles requests to the registration page.
+# 2. form = UserCreationForm() — creates an empty registration form.
+# 3. render(...) — sends that form to register.html so the browser can display it.
+# 4. "form": form — passes the form to the HTML template.
+
+# 1. Create the function
+def user_login(request):
+# 2. Check whether the user submitted the form
+    if request.method == "POST":
+        # 3. Receive the submitted information
+        form = AuthenticationForm(request, data = request.POST)
+        # 4. Check the username and password
+        if form.is_valid():
+            # 5. Get the authenticated user
+            user = form.get_user()
+            # 6. Actually log the user in
+            login(request, user)#Django creates an authenticated session for that user.
+# After successful login, the user goes to your recipes page.
+            return redirect("/recipes/")
+        else:
+            print("LOGIN ERREORS:" , form.errors)
+            
+
+    else:
+        # 8. Display an empty form for GET requests
+        form = AuthenticationForm()#When someone first visits the login page, Django creates an empty login form.
+
+# This displays the login page. If the submitted credentials are invalid, the form is displayed again with errors.
+    return render(request, "login.html", {
+        "form": form
+    })
