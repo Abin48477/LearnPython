@@ -8,6 +8,10 @@ from .models import Receipe
 
 class RecipeViewTests(TestCase):
     def setUp(self):
+        """Description of setUp
+
+        Returns:
+        """
         self.media_dir = TemporaryDirectory()
         self.addCleanup(self.media_dir.cleanup)
         media_override = override_settings(MEDIA_ROOT=self.media_dir.name)
@@ -15,6 +19,10 @@ class RecipeViewTests(TestCase):
         self.addCleanup(media_override.disable)
 
     def test_home_page_recipe_link_resolves(self):
+        """Description of test_home_page_recipe_link_resolves
+
+        Returns:
+        """
         response = self.client.get("/")
 
         self.assertEqual(response.status_code, 200)
