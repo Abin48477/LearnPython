@@ -10,6 +10,13 @@ from django.contrib.auth.decorators import login_required
 # Meaning: Only logged-in users can access a protected page.
 
 def recipes(request):
+    """Description of recipes
+
+    Args:
+        request:
+
+    Returns:
+    """
     # This is the page that helps us show recipes and save new ones.
     print("RECIPES VIEW CALLED")
 
