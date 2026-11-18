@@ -12,4 +12,3 @@ class Student(models.Model):
 class Car(models.Model):
     car_name = models.CharField(max_length =100)
     speed = models.IntegerField(default = 50)
-

@@ -18,10 +18,7 @@ class Category:
         })
         return True #Tells us that the withdrawal succeeded.
     def get_balance(self):
-        """Description of get_balance
-
-        Returns:
-        """
+       
         total = 0
         for item in self.ledger:
             total += item['amount']
