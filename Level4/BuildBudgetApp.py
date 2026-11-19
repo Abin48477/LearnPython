@@ -17,13 +17,22 @@ class Category:
             "description":description
         })
         return True #Tells us that the withdrawal succeeded.
+    
     def get_balance(self):
        
         total = 0
         for item in self.ledger:
             total += item['amount']
         return total
-
+    
+    # Python compares two values:
+# - amount: How much we want to withdraw.
+# - self.get_balance(): How much money we currently have.
+    def check_funds(self,amount):
+        if amount > self.get_balance():
+            return False
+        else:
+            return True
 
             
 food = Category("food")
@@ -43,5 +52,8 @@ print(food.ledger)
 print(clothing.ledger)
 
 print(food.get_balance())
+
+print(food.check_funds(20000))
+print(food.check_funds(10))
 
 
